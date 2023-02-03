@@ -4,8 +4,8 @@ services:
     build: php
     volumes:
       - ./src:/var/www/html
-    ports:
-      - "9000:9000"
+    networks:
+      - apacheAndPhp
 
   apache:
     container_name: apache
@@ -14,6 +14,10 @@ services:
       - ./src:/var/www/html
       - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
     ports:
-      - "8080:80"
-    depends_on:
-      - php
+      - "80:80"
+    networks:
+      - apacheAndPhp
+
+networks:
+  apacheAndPhp:
+    driver: bridge
