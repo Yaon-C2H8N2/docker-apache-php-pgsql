@@ -1,7 +1,19 @@
 services:
-  web:
-    build: ./apache
+  php:
+    container_name: php
+    build: php
     volumes:
       - ./src:/var/www/html
     ports:
-      - "8000:80"
+      - "9000:9000"
+
+  apache:
+    container_name: apache
+    build: apache
+    volumes:
+      - ./src:/var/www/html
+      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
