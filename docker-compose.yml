@@ -5,7 +5,7 @@ services:
     volumes:
       - ./src:/var/www/html
     networks:
-      - apacheAndPhp
+      - backend
 
   apache:
     container_name: apache
@@ -16,8 +16,20 @@ services:
     ports:
       - "80:80"
     networks:
-      - apacheAndPhp
+      - backend
+
+  pgsql:
+    container_name: pgsql
+    build: pgsql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
 
 networks:
-  apacheAndPhp:
+  backend:
     driver: bridge
