@@ -3,4 +3,4 @@ A fast Docker implementation of an NGINX, PHP and PostgreSQL environment.
 
 - [x] Apache
 - [x] PHP
-- [ ] PostgreSQL
+- [x] PostgreSQL
