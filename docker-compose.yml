@@ -29,6 +29,11 @@ services:
       - "5432:5432"
     networks:
       - backend
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+
+volumes:
+  db-data:
 
 networks:
   backend:
