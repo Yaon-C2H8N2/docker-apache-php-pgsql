@@ -1,6 +1,6 @@
 services:
   php:
-    container_name: php
+    container_name: ${PROJECT_NAME}-php
     build: php
     volumes:
       - ./src:/var/www/html
@@ -8,7 +8,7 @@ services:
       - backend
 
   apache:
-    container_name: apache
+    container_name: ${PROJECT_NAME}-apache
     build: apache
     volumes:
       - ./src:/var/www/html
@@ -19,7 +19,7 @@ services:
       - backend
 
   pgsql:
-    container_name: pgsql
+    container_name: ${PROJECT_NAME}-pgsql
     build: pgsql
     environment:
       - POSTGRES_USER=postgres
@@ -34,6 +34,7 @@ services:
 
 volumes:
   db-data:
+    name: ${PROJECT_NAME}-db-data
 
 networks:
   backend:
